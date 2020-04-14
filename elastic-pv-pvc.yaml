@@ -1,0 +1,28 @@
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: elastic
+  labels:
+    type: local
+spec:
+  storageClassName: elasticsearch
+  capacity:
+    storage: 16Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data-elastic"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: elastic
+  namespace: devops
+spec:
+  storageClassName: elasticsearch
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 16Gi
